@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Bank App Sign-up page</title>
+  <style>
+    *{
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body style="font-family: cursive;width: 100vw; ">
+  <center>
+  <!-- <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-xs-12 col-ml-12 col-lg-12 col-lx-12 col-xxl-12 "> -->
+    
+  <nav class="navbar navbar-expand-lg" style="background-color: rgb(54, 54, 155); width: 100%;">
+    
+        <a class="navbar-brand" href="index.html">Sparksave Bank</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                 
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Signup</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="signin.html">Login</a>
+                </li>
+            </ul>
+        </div>
+</nav>
+      <!-- </div>
+      </div>
+      </div> -->
+
+
+
+  <div class="container " >
+    <div class="row justify-content-center">
+      <section class="col-6 col-xs-6 col-ml-6 col-lg-6 col-lx-6 col-xxl-12"  style=" background-color: whitesmoke; height: 70vh; width: 500px;  margin-top: 5%; padding-top: 40px; border-radius: 20px; border: 2px solid white ; box-shadow: white 15px 10px; text-align: center; justify-content: center;">   
+         <h3 style="font-size: x-large;">Sparksave Bank </h3>
+        <span >Sign Up To Open An Account</span>
+      <form novalidate id="signUpForm"><br>
+      
+        
+          <input type="text" require placeholder="First name" style="height: 35px; width: 320px;  border: 1px; border-radius: 5px;" id="userFirstName">
+          <br><br>
+          <input type="text" required  placeholder="Surname" style="height: 35px;width: 320px;  border: 1px; border-radius: 5px;" id="userLastName">
+      <br><br>
+      <input type="email"   required  placeholder="Email address" style="height: 35px;width: 320px;  border: 1px; border-radius: 5px;" id="userEmail"><br><br>
+      <input type="number" placeholder="Phone number" style="height: 35px;width: 320px;  border: 1px; border-radius: 5px;" id="userNumber"><br><br>
+      <input type="password" placeholder="Password" style="height: 35px;width: 320px;  border: 1px; border-radius: 5px;" id="userPassword"><br><br>
+        
+      </form>
+      <button style="margin-top: 5%; height: 30px;border-radius: 5px;" onclick="signUp()">Sign Up</button> 
+      </section>
+  </div>
+</div>
+</div>
+</div>
+</center> 
+  
+</body>
+<script>
+  // if (localStorage.currentUser) {
+  //           location.href = './dash.html'
+  //       } 
+  
+  var usersArr = []
+
+    if (localStorage.users) {
+        var oldUsers = JSON.parse(localStorage.getItem('users'))
+
+        oldUsers.forEach(element => {
+            usersArr.push(element)
+        });
+    }
+
+    function signUp() {
+      if (userFirstName.value == '' || userPassword.value == '' || userEmail.value == '' || userLastName =="" || userNumber=="") {
+        alert("Fill out the fields")}
+        else{
+        var firstName = userFirstName.value
+        var lastName = userLastName.value
+        var emailAddress = userEmail.value
+        var password = userPassword.value
+        var number = userNumber.value
+        var accountNumber = (Math.random()*1000000000)
+        
+        var userObj = {
+            firstName: firstName,
+            lastName: lastName,
+            email: emailAddress,
+            password: password,
+            accountNumber: Math.ceil(accountNumber),
+            number : number,
+            accountBalance:100000
+        }
+
+
+        var found = usersArr.find(user => user.email == emailAddress)
+
+        console.log(found)
+        if (found) {
+            alert("Email exists")
+        } 
+        else {
+            console.log("userObj")
+            usersArr.push(userObj)
+            localStorage.setItem('users', JSON.stringify(usersArr))
+            location.href = './signin.html'
+          
+        }      
+    }
+        }
+      
+</script>
+
+</html>
